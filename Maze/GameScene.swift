@@ -10,19 +10,21 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    let Feild_hockey_ball = SKSpriteNode(imageNamed: "Feild_hockey_ball")
+    let ball = SKSpriteNode(imageNamed: "ball")
     
     override func didMove( to view: SKView) {
         backgroundColor = SKColor.black
         
-        let background = SKSpriteNode(imageNamed: "icybackground")
+        ball.position = CGPoint(x: size.width/2, y: size.height/2)
+        ball.zPosition = 1 
+        addChild(ball)
+        
+        let background = SKSpriteNode(imageNamed: "Icy Background")
         background.position = CGPoint(x: size.width/2, y: size.height/2)
         background.size = self.frame.size
+        
         background.zPosition = -1
         addChild(background)
-        
-        Feild_hockey_ball.position = CGPoint(x: size.width/2, y: size.height/2)
-        addChild(Feild_hockey_ball)
         
     }
 }
