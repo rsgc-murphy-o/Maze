@@ -27,7 +27,22 @@ class GameScene: SKScene {
         addChild(background)
         
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        gaurd let touch = touches.first else {
+            return
+        }
+        
+        let touchLocation = touch.location(in: self)
+        
+        print(touchLocation.x)
+        print(touchLocation.y)
+        
+        let destination = CGPoint(x: touchLocation.x, y: ball.position.y )
+        
+        let actionMove = SKAction.move(to: destination, duration: 3)
+        
+        ball.run(actionMove)
+    }
 }
-
-
- 
