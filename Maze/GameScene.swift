@@ -69,6 +69,7 @@ class GameScene: SKScene {
         
         let destination = CGPoint(x: touchLocation.x, y: Ball.position.y )
         
+      
         let actionMove = SKAction.move(to: destination, duration: 1)
         
         Ball.run(actionMove)
