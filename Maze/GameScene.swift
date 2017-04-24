@@ -10,23 +10,21 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    let Ball = SKSpriteNode(imageNamed: "ball")
+    let Ball = SKSpriteNode(imageNamed: "ball")                                // Add the ball sprite.
     
-    let Block = SKSpriteNode(imageNamed: "Block")
+    let Block = SKSpriteNode(imageNamed: "Block")                              // Add the block sprite.
     
     override func didMove( to view: SKView) {
         backgroundColor = SKColor.black
+        Ball.position = CGPoint(x: size.width/2, y: size.height/2)             // Configure how the ball sprite looks.
+        Ball.zPosition = 1                                                     // Ensures that the ball is drawn above the background.
+        addChild(Ball)                                                         // Add the ball sprite to the scene.
         
-        Ball.position = CGPoint(x: size.width/2, y: size.height/2)
-        Ball.zPosition = 1 
-        addChild(Ball)
-        
-    let background = SKSpriteNode(imageNamed: "Icy Background")
-        background.position = CGPoint(x: size.width/2, y: size.height/2)
-        background.size = self.frame.size
-        
-        background.zPosition = -1
-        addChild(background)
+    let background = SKSpriteNode(imageNamed: "Icy Background")                // Adding a sprite to represent background.
+        background.position = CGPoint(x: size.width/2, y: size.height/2)       // Anchor the background image in the middle of the screen.
+        background.size = self.frame.size                                      // Set the size of the background sprite to the screen size.
+        background.zPosition = -1                                              // Ensures that the background is drawn under the ball sprite.
+        addChild(background)                                                   // Add the background sprite to the scene.
         
         let actionWait = SKAction.wait(forDuration: 2)
         let actionSpawn = SKAction.run () {[weak self] in self?.spawnObstacles()}
@@ -37,53 +35,42 @@ class GameScene: SKScene {
     }
     
     override func update(_ currentTime: TimeInterval){
-        // check for collisions
-        checkCollisions()
+        checkCollisions()                                                      // check for collisions
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {// Method responds to single touch.
+        guard let touch = touches.first else {                                 // When you touch the device.
+            return
+        }
         
-        guard let touch = touches.first else {
+        let touchLocation = touch.location(in: self)                           // Get the location of the first touch.
+        print(touchLocation.x)                                                 // Print the x location in the console.
+        print(touchLocation.y)                                                 // Print the y location in the console.
+        moveBall(touchLocation: touchLocation)                                 // Use the moveBall method again.
+        
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {//
+        guard let touch = touches.first else {                                 //
             return
         }
         
         let touchLocation = touch.location(in: self)
-        
-        //print(touchLocation.x)
-        //print(touchLocation.y)
-        
-        moveBall(touchLocation: touchLocation)
-        
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        guard let touch = touches.first else {
-            return
-        }
-        
-        let touchLocation = touch.location(in: self)
-        
-        //print(touchLocation.x)
-        //print(touchLocation.y)
-        
-        moveBall(touchLocation: touchLocation)
+        print(touchLocation.x)                                                 // Print the x location in the console.
+        print(touchLocation.y)                                                 // Print the y location in the console.
+        moveBall(touchLocation: touchLocation)                                 // Use the moveBall method again.
         
     }
 
     
-    func moveBall(touchLocation: CGPoint) {
-        
-        let destination = CGPoint(x: touchLocation.x, y: Ball.position.y )
-        
-      
-        let actionMove = SKAction.move(to: destination, duration: 1)
-        
-        Ball.run(actionMove)
+    func moveBall(touchLocation: CGPoint) {                                    // Moves ball sprite to touch location.
+        let destination = CGPoint(x: touchLocation.x, y: Ball.position.y )     // Move santa horizontally.
+        let actionMove = SKAction.move(to: destination, duration: 1)           // Create an action.
+        Ball.run(actionMove)                                                   // Tell the ball sprite to move.
         
     }
     
-    func spawnObstacles(){
+    func spawnObstacles(){                                                     // Method to spawn multiple obstacles for the ball to dodge.
     
         let obstacle = SKSpriteNode(imageNamed: "Block")
         
