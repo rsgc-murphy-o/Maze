@@ -33,7 +33,7 @@ class GameScene: SKScene {
         
     }
     
-    override func update(_ currentTime: TimeInterval){
+    override func update(_ currentTime: TimeInterval){                         // Runs everytime spritekit updates the game frame.
         checkCollisions()                                                      // check for collisions
     }
     
@@ -49,8 +49,8 @@ class GameScene: SKScene {
         
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {//
-        guard let touch = touches.first else {                                 //
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else {
             return
         }
         
@@ -89,20 +89,20 @@ class GameScene: SKScene {
     
     }
     
-    func checkCollisions() {
-        var hitObstacles : [SKSpriteNode] = []
-        enumerateChildNodes(withName: "obstacle", using: {
+    func checkCollisions() {                                                   // Function checks for collisions between the ball and the block
+        var hitObstacles : [SKSpriteNode] = []                                 // Array that will contain all of the obstacles hitting the ball
+        enumerateChildNodes(withName: "obstacle", using: {                     // Find all of the obstacles colliding with the ball.
             node, _ in
-            let obstacle = node as! SKSpriteNode
-            if obstacle.frame.insetBy(dx: 20, dy: 20).intersects(self.Ball.frame.insetBy(dx: 40, dy: 40)) {
-                hitObstacles.append(obstacle)
+            let obstacle = node as! SKSpriteNode                               // Get reference to the node that was found with the name obsta.
+            if obstacle.frame.insetBy(dx: 20, dy: 20).intersects(self.Ball.frame.insetBy(dx: 40, dy: 40)) {// check to see if they intersect.
+                hitObstacles.append(obstacle)                                  // If the obstacles hits the ball.
             }
         })
-        for obstacle in hitObstacles {
-            ballHit(by: obstacle)
+        for obstacle in hitObstacles {                                         // loop over all of the obstacles colliding and deal with them.
+            ballHit(by: obstacle)                                              // Call function to get rid of the obstacle.
         }
     }
-    func ballHit (by obstacle: SKSpriteNode) {
-        obstacle.removeFromParent()
+    func ballHit (by obstacle: SKSpriteNode) {                                 // This function removes the block from the game.
+        obstacle.removeFromParent()                                            // Removes it from the game scene. 
     }
 }
