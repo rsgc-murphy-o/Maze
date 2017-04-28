@@ -5,11 +5,12 @@
 //  Created by Oliver Murphy on 2017-03-02.
 //  Copyright © 2017 Oliver Murphy. All rights reserved.
 //
+import Foundation
 import SpriteKit
 
 class GameScene: SKScene {
     let Ball = SKSpriteNode(imageNamed: "ball")                                // Add the ball sprite.
-    let scoreLabel = SKLabelNode(fontNamed: "Helvetica-Bold")                 // A label and a variable to track score.
+    let scoreLabel = SKLabelNode(fontNamed: "Helvetica-Bold")                  // A label and a variable to track score.
     var score = 0                                                              // Tracks the current score.
     let Block = SKSpriteNode(imageNamed: "Block")                              // Add the block sprite.
     
@@ -20,7 +21,7 @@ class GameScene: SKScene {
         Ball.zPosition = 1                                                     // Ensures that the ball is drawn above the background.
         addChild(Ball)                                                         // Add the ball sprite to the scene.
         
-    let background = SKSpriteNode(imageNamed: "Country Background")                // Adding a sprite to represent background.
+        let background = SKSpriteNode(imageNamed: "Country Background")            // Adding a sprite to represent background.
         background.position = CGPoint(x: size.width/2, y: size.height/2)       // Anchor the background image in the middle of the screen.
         background.size = self.frame.size                                      // Set the size of the background sprite to the screen size.
         background.zPosition = -1                                              // Ensures that the background is drawn under the ball sprite.
@@ -33,7 +34,7 @@ class GameScene: SKScene {
         run(actionObstacleRepeat)                                              // Now run start the sequence.
         
         scoreLabel.text = String(score)                                        // Add the heads-up display to show the score.
-        scoreLabel.fontColor = SKColor.black                                   // Font color is made black. 
+        scoreLabel.fontColor = SKColor.black                                   // Font color is made black.
         scoreLabel.fontSize = 96                                               // Font size is defined here.
         scoreLabel.zPosition = 150                                             // Makes sure the HUD is ontop of all the other nodes.
         scoreLabel.position = CGPoint(x: size.width - size.width/8, y: size.height - size.height/4)
@@ -110,5 +111,13 @@ class GameScene: SKScene {
         scoreLabel.text = String(score)                                        // Update the score label.
         obstacle.removeAction(forKey: "obstacleFalling")                       // Stop the action.
         obstacle.removeFromParent()
+        
+        if score == -6 {
+            let gameOverScene = GameOverScene(size: size)
+            let reveal = SKTransition.doorsCloseHorizontal(withDuration: 0.5)
+            view?.presentScene(gameOverScene, transition: reveal)
+        }
+
     }
+    
 }
