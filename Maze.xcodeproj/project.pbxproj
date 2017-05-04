@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A70127C91EB3BCBC00A8EEBA /* Game Over Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70127C81EB3BCBC00A8EEBA /* Game Over Text.swift */; };
+		A70127C91EB3BCBC00A8EEBA /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70127C81EB3BCBC00A8EEBA /* GameOverScene.swift */; };
 		A7214BE81E685617000DAF0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7214BE71E685617000DAF0F /* AppDelegate.swift */; };
 		A7214BEE1E685617000DAF0F /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7214BED1E685617000DAF0F /* GameScene.swift */; };
 		A7214BF01E685617000DAF0F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7214BEF1E685617000DAF0F /* GameViewController.swift */; };
@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A70127C81EB3BCBC00A8EEBA /* Game Over Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Game Over Text.swift"; path = "../../../../Game Over Text.swift"; sourceTree = "<group>"; };
+		A70127C81EB3BCBC00A8EEBA /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameOverScene.swift; path = ../../../../GameOverScene.swift; sourceTree = "<group>"; };
 		A7214BE41E685617000DAF0F /* Maze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7214BE71E685617000DAF0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7214BED1E685617000DAF0F /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 				A7EFCD671EA928F90071DE13 /* Independent_Study_Project_-_Checkpoint_1-1.docx */,
 				A7214BE71E685617000DAF0F /* AppDelegate.swift */,
 				A7214BED1E685617000DAF0F /* GameScene.swift */,
-				A70127C81EB3BCBC00A8EEBA /* Game Over Text.swift */,
+				A70127C81EB3BCBC00A8EEBA /* GameOverScene.swift */,
 				A7214BEF1E685617000DAF0F /* GameViewController.swift */,
 				A7214BF11E685618000DAF0F /* Main.storyboard */,
 				A7214BF41E685618000DAF0F /* Assets.xcassets */,
@@ -146,7 +146,7 @@
 			files = (
 				A7214BEE1E685617000DAF0F /* GameScene.swift in Sources */,
 				A7214BF01E685617000DAF0F /* GameViewController.swift in Sources */,
-				A70127C91EB3BCBC00A8EEBA /* Game Over Text.swift in Sources */,
+				A70127C91EB3BCBC00A8EEBA /* GameOverScene.swift in Sources */,
 				A7214BE81E685617000DAF0F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

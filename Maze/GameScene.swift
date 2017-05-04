@@ -13,6 +13,7 @@ class GameScene: SKScene {
     let scoreLabel = SKLabelNode(fontNamed: "Helvetica-Bold")                  // A label and a variable to track score.
     var score = 0                                                              // Tracks the current score.
     let Block = SKSpriteNode(imageNamed: "Block")                              // Add the block sprite.
+    let Smash_Ball = SKSpriteNode(imageNamed: "Smash_Ball")
     
     // This function runs once at the start of the game.
     override func didMove( to view: SKView) {
@@ -21,7 +22,7 @@ class GameScene: SKScene {
         Ball.zPosition = 1                                                     // Ensures that the ball is drawn above the background.
         addChild(Ball)                                                         // Add the ball sprite to the scene.
         
-        let background = SKSpriteNode(imageNamed: "Country Background")            // Adding a sprite to represent background.
+        let background = SKSpriteNode(imageNamed: "Country Background")        // Adding a sprite to represent background.
         background.position = CGPoint(x: size.width/2, y: size.height/2)       // Anchor the background image in the middle of the screen.
         background.size = self.frame.size                                      // Set the size of the background sprite to the screen size.
         background.zPosition = -1                                              // Ensures that the background is drawn under the ball sprite.
@@ -73,7 +74,7 @@ class GameScene: SKScene {
         let actionMove = SKAction.move(to: destination, duration: 0.5)           // Create an action.
         Ball.run(actionMove)                                                   // Tell the ball sprite to move.
     }
-    
+    // Spawns the blocks
     func spawnObstacles(){                                                     // Method to spawn multiple obstacles for the ball to dodge.
         let obstacle = SKSpriteNode(imageNamed: "Block")                       // Create instance of the obstacle.
         obstacle.setScale(6)                                                   // Set the size of the obstacle.
@@ -91,8 +92,25 @@ class GameScene: SKScene {
         let actionRemove = SKAction.removeFromParent()                         // This will remove the obstacle from the scene.
         let actionSequence = SKAction.sequence([actionMove, actionRemove])     // Tells what actions to run and in which order.
         obstacle.run(actionSequence, withKey: "obstacleFalling")               // instead of running a single action, it run the sequence.
+        
+        
+        // Spawns the smash ball
+        let secondObstacle = SKSpriteNode(imageNamed: "Smash_Ball")
+        secondObstacle.setScale(0.2)
+        let horizontalPosition2 = CGFloat(arc4random_uniform(UInt32(size.width)))
+        let verticalPosition2 = size.height + secondObstacle.size.height * 2
+        let startingPosition2 = CGPoint(x: horizontalPosition2, y: verticalPosition2)
+        secondObstacle.position = startingPosition2
+        secondObstacle.zPosition = 3
+        secondObstacle.name = "secondObstacle"
+        addChild(secondObstacle)
+        
+        let endingPosition2 = CGPoint(x: horizontalPosition2, y: 0 - secondObstacle.size.height)
+        let actionMove2 = SKAction.move(to: endingPosition2, duration: 5)
+        let actionRemove2 = SKAction.removeFromParent()
+        let actionSequence2 = SKAction.sequence([actionMove2, actionRemove2])
+        secondObstacle.run(actionSequence2, withKey: "obstacleFalling")
     }
-    
     func checkCollisions() {                                                   // Function checks for collisions between the ball and the block
         var hitObstacles : [SKSpriteNode] = []                                 // Array that will contain all of the obstacles hitting the ball
         enumerateChildNodes(withName: "obstacle", using: {                     // Find all of the obstacles colliding with the ball.
@@ -104,20 +122,43 @@ class GameScene: SKScene {
         })
         for obstacle in hitObstacles {                                         // loop over all of the obstacles colliding and deal with them.
             ballHit(by: obstacle)                                              // Call function to get rid of the obstacle.
+            
+        }
+        var hitObstacles2 : [SKSpriteNode] = []
+        enumerateChildNodes(withName: "obstacle", using: {
+            node, _ in
+            let secondObstacle = node as! SKSpriteNode
+            if secondObstacle.frame.insetBy(dx: 10, dy: 10).intersects(self.Smash_Ball.frame.insetBy(dx: 10, dy: 10)) {
+                hitObstacles.append(secondObstacle)
+            }
+        })
+        for secondObstacle in hitObstacles {
+            ballHit2(by: secondObstacle)
+            
         }
     }
+    
+    
     func ballHit (by obstacle: SKSpriteNode) {                                 // This function removes the block from the game.
         score -= 1                                                             // Reduce the score.
         scoreLabel.text = String(score)                                        // Update the score label.
         obstacle.removeAction(forKey: "obstacleFalling")                       // Stop the action.
         obstacle.removeFromParent()
         
-        if score == -6 {
+        if score == -20 {
             let gameOverScene = GameOverScene(size: size)
-            let reveal = SKTransition.doorsCloseHorizontal(withDuration: 0.5)
+            let reveal = SKTransition.doorsCloseHorizontal(withDuration: 1.0)
             view?.presentScene(gameOverScene, transition: reveal)
         }
 
+    }
+    
+    func ballHit2 (by secondObstacle: SKSpriteNode) {
+        score -= 1
+        scoreLabel.text = String(score)
+        secondObstacle.removeAction(forKey: "Smash_Ball")
+        secondObstacle.removeFromParent()
+        
     }
     
 }
