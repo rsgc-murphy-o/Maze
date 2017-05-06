@@ -124,18 +124,6 @@ class GameScene: SKScene {
             ballHit(by: obstacle)                                              // Call function to get rid of the obstacle.
             
         }
-        var hitObstacles2 : [SKSpriteNode] = []
-        enumerateChildNodes(withName: "obstacle", using: {
-            node, _ in
-            let secondObstacle = node as! SKSpriteNode
-            if secondObstacle.frame.insetBy(dx: 10, dy: 10).intersects(self.Smash_Ball.frame.insetBy(dx: 10, dy: 10)) {
-                hitObstacles.append(secondObstacle)
-            }
-        })
-        for secondObstacle in hitObstacles {
-            ballHit2(by: secondObstacle)
-            
-        }
     }
     
     
@@ -150,15 +138,6 @@ class GameScene: SKScene {
             let reveal = SKTransition.doorsCloseHorizontal(withDuration: 1.0)
             view?.presentScene(gameOverScene, transition: reveal)
         }
-
-    }
     
-    func ballHit2 (by secondObstacle: SKSpriteNode) {
-        score -= 1
-        scoreLabel.text = String(score)
-        secondObstacle.removeAction(forKey: "Smash_Ball")
-        secondObstacle.removeFromParent()
-        
     }
-    
 }

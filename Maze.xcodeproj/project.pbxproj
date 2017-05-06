@@ -14,6 +14,7 @@
 		A7214BF31E685618000DAF0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7214BF11E685618000DAF0F /* Main.storyboard */; };
 		A7214BF51E685618000DAF0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7214BF41E685618000DAF0F /* Assets.xcassets */; };
 		A7214BF81E685618000DAF0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7214BF61E685618000DAF0F /* LaunchScreen.storyboard */; };
+		A7D013081EBE762E00F7E3C6 /* Asset_Tracking_Form.docx in Resources */ = {isa = PBXBuildFile; fileRef = A7D013071EBE762E00F7E3C6 /* Asset_Tracking_Form.docx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		A7214BF41E685618000DAF0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A7214BF71E685618000DAF0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A7214BF91E685618000DAF0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7D013071EBE762E00F7E3C6 /* Asset_Tracking_Form.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Asset_Tracking_Form.docx; sourceTree = "<group>"; };
 		A7EFCD671EA928F90071DE13 /* Independent_Study_Project_-_Checkpoint_1-1.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Independent_Study_Project_-_Checkpoint_1-1.docx"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,6 +61,7 @@
 		A7214BE61E685617000DAF0F /* Maze */ = {
 			isa = PBXGroup;
 			children = (
+				A7D013071EBE762E00F7E3C6 /* Asset_Tracking_Form.docx */,
 				A7EFCD671EA928F90071DE13 /* Independent_Study_Project_-_Checkpoint_1-1.docx */,
 				A7214BE71E685617000DAF0F /* AppDelegate.swift */,
 				A7214BED1E685617000DAF0F /* GameScene.swift */,
@@ -132,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7214BF31E685618000DAF0F /* Main.storyboard in Resources */,
+				A7D013081EBE762E00F7E3C6 /* Asset_Tracking_Form.docx in Resources */,
 				A7214BF51E685618000DAF0F /* Assets.xcassets in Resources */,
 				A7214BF81E685618000DAF0F /* LaunchScreen.storyboard in Resources */,
 			);
